@@ -25,6 +25,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "gf2_poly.h"
+
 
 // =============================================================================
 // BigPoly – polynomial over GF(2) of arbitrary degree
@@ -373,45 +375,83 @@ void flip_bit(BigPoly& p, int pos) {
     p.trim();
 }
 
-// =============================================================================
-// Entry point  (single-word smoke test)
-// =============================================================================
+/* * -----------------------------------------------------------------
+ * IMPLEMENTATION OF C-CALLABLE WRAPPERS
+ * -----------------------------------------------------------------
+ */
 
-#ifndef BCH_NO_MAIN
-int main() {
-    constexpr int DATA_BYTES = 590;
-    constexpr int BIT_FLIPS  = 2;
-    constexpr int m          = 13;
-
-    generate_gf_tables(m);
-    const uint64_t g = get_g_polynomial(m);
-
-    std::mt19937_64 rng(std::random_device{}());
-
-    BigPoly original_data = random_bigpoly(DATA_BYTES * 8, rng);
-    BigPoly word_crc      = CRC_encoding(original_data);
-    BigPoly codeword      = encoding(word_crc, g);
-
-    BigPoly corrupted = codeword;
-    int cw_len = codeword.bit_length();
-    std::uniform_int_distribution<int> dist(0, cw_len - 1);
-    for (int i = 0; i < BIT_FLIPS; ++i) flip_bit(corrupted, dist(rng));
-
-    auto syndromes  = calculate_syndromes(corrupted, 2);
-    auto lambda     = bch_berlekamp_massey(syndromes, 2);
-    auto error_pos  = bch_chien_search(lambda, cw_len, m);
-
-    BigPoly corrected = corrupted;
-    for (int p : error_pos) flip_bit(corrected, p);
-
-    std::printf("%s\n", corrected == codeword ? "CORRECTED" : "UNCORRECTABLE");
-    std::printf("Data size:      %d bytes (%d bits)\n", DATA_BYTES, DATA_BYTES * 8);
-    std::printf("Codeword size:  %d bits\n", cw_len);
-    std::printf("Error positions: [");
-    for (std::size_t i = 0; i < error_pos.size(); ++i)
-        std::printf("%s%d", i ? ", " : "", error_pos[i]);
-    std::printf("]\n");
-
-    return 0;
+void gf2_initialize(void) {
+    // Generate the Galois Field tables for m=13
+    generate_gf_tables(13);
 }
-#endif // BCH_NO_MAIN
+
+void gf2_encode_data(uint8_t* input_data, int input_length, uint8_t* output_codeword) {
+    // Pack byte array into BigPoly
+    BigPoly input_poly;
+    int num_words = (input_length + 7) / 8;
+    input_poly.w.resize(num_words, 0);
+    
+    for (int i = 0; i < input_length; ++i) {
+        int word_idx = i / 8;
+        int byte_idx = i % 8;
+        input_poly.w[word_idx] |= (static_cast<uint64_t>(input_data[i]) << (byte_idx * 8));
+    }
+    input_poly.trim();
+
+    // Perform Encoding
+    int m = 13; 
+    uint64_t g = get_g_polynomial(m); 
+    BigPoly word_crc = CRC_encoding(input_poly);
+    BigPoly codeword = encoding(word_crc, g);
+
+    // Unpack BigPoly codeword back to byte array
+    int total_bytes = (codeword.bit_length() + 7) / 8; 
+    for (int i = 0; i < total_bytes; ++i) {
+        int word_idx = i / 8;
+        int byte_idx = i % 8;
+        if (word_idx < static_cast<int>(codeword.w.size())) {
+            output_codeword[i] = (codeword.w[word_idx] >> (byte_idx * 8)) & 0xFF;
+        } else {
+            output_codeword[i] = 0;
+        }
+    }
+}
+
+int gf2_correct_errors(uint8_t* data, int length) {
+    // Pack corrupted byte array into BigPoly
+    BigPoly corrupted;
+    int num_words = (length + 7) / 8;
+    corrupted.w.resize(num_words, 0);
+    for (int i = 0; i < length; ++i) {
+        int word_idx = i / 8;
+        int byte_idx = i % 8;
+        corrupted.w[word_idx] |= (static_cast<uint64_t>(data[i]) << (byte_idx * 8));
+    }
+    corrupted.trim();
+
+    // Find and correct errors
+    int m = 13;
+    int cw_len = corrupted.bit_length();
+    auto syndromes = calculate_syndromes(corrupted, 2);
+    auto lambda    = bch_berlekamp_massey(syndromes, 2);
+    auto error_pos = bch_chien_search(lambda, cw_len, m);
+
+    // Flip the bad bits
+    for (int p : error_pos) {
+        flip_bit(corrupted, p);
+    }
+
+    // Unpack the corrected BigPoly back into the C array
+    for (int i = 0; i < length; ++i) {
+        int word_idx = i / 8;
+        int byte_idx = i % 8;
+        if (word_idx < static_cast<int>(corrupted.w.size())) {
+            data[i] = (corrupted.w[word_idx] >> (byte_idx * 8)) & 0xFF;
+        } else {
+            data[i] = 0;
+        }
+    }
+
+    // Return the number of errors corrected (or -1 if it failed)
+    return error_pos.size(); 
+}
