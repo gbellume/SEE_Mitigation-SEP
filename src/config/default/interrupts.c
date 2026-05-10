@@ -48,6 +48,7 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
+#include "configuration.h"
 #include "device_vectors.h"
 #include "interrupts.h"
 #include "definitions.h"
@@ -78,7 +79,7 @@ void __attribute__((optimize("-O1"), long_call, noreturn, used))Dummy_Handler(vo
 }
 
 /* MISRAC 2023 deviation block start */
-/* MISRA C-2023 Rule 8.6 deviated 73 times.  Deviation record ID -  H3_MISRAC_2023_R_8_6_DR_1 */
+/* MISRA C-2023 Rule 8.6 deviated 71 times.  Deviation record ID -  H3_MISRAC_2023_R_8_6_DR_1 */
 /* Device vectors list dummy definition*/
 extern void SVCall_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void PendSV_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
@@ -105,7 +106,6 @@ extern void TWIHS0_Handler             ( void ) __attribute__((weak, alias("Dumm
 extern void TWIHS1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void SPI0_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void SSC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
-extern void TC0_CH0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void TC0_CH1_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void TC0_CH2_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void TC1_CH0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
@@ -116,7 +116,6 @@ extern void DACC_Handler               ( void ) __attribute__((weak, alias("Dumm
 extern void PWM0_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void ICM_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void ACC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
-extern void USBHS_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void MCAN0_INT0_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void MCAN0_INT1_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
 extern void MCAN1_INT0_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler"),noreturn));
@@ -162,13 +161,14 @@ extern void GMAC_Q5_Handler            ( void ) __attribute__((weak, alias("Dumm
 
 
 /* MISRAC 2023 deviation block start */
-/* MISRA C-2023 Rule 2.8 deviated 73 times.  Deviation record ID -  H3_MISRAC_2023_R_2_8_DR_1 */
+/* MISRA C-2023 Rule 2.8 deviated 71 times.  Deviation record ID -  H3_MISRAC_2023_R_2_8_DR_1 */
 
 __attribute__ ((section(".vectors"), used))
 const H3DeviceVectors exception_table=
 {
     /* Configure Initial Stack Pointer, using linker-generated symbols */
     .pvStack = &_stack,
+
 
     .pfnReset_Handler              = Reset_Handler,
     .pfnNonMaskableInt_Handler     = NonMaskableInt_Handler,
@@ -202,7 +202,7 @@ const H3DeviceVectors exception_table=
     .pfnTWIHS1_Handler             = TWIHS1_Handler,
     .pfnSPI0_Handler               = SPI0_Handler,
     .pfnSSC_Handler                = SSC_Handler,
-    .pfnTC0_CH0_Handler            = TC0_CH0_Handler,
+    .pfnTC0_CH0_Handler            = TC0_CH0_InterruptHandler,
     .pfnTC0_CH1_Handler            = TC0_CH1_Handler,
     .pfnTC0_CH2_Handler            = TC0_CH2_Handler,
     .pfnTC1_CH0_Handler            = TC1_CH0_Handler,
@@ -213,7 +213,7 @@ const H3DeviceVectors exception_table=
     .pfnPWM0_Handler               = PWM0_Handler,
     .pfnICM_Handler                = ICM_Handler,
     .pfnACC_Handler                = ACC_Handler,
-    .pfnUSBHS_Handler              = USBHS_Handler,
+    .pfnUSBHS_Handler              = DRV_USBHSV1_USBHS_Handler,
     .pfnMCAN0_INT0_Handler         = MCAN0_INT0_Handler,
     .pfnMCAN0_INT1_Handler         = MCAN0_INT1_Handler,
     .pfnMCAN1_INT0_Handler         = MCAN1_INT0_Handler,

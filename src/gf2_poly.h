@@ -15,7 +15,8 @@ extern "C" {
  * Do not put C++ classes, references, or templates in these parameters.
  */
 void gf2_initialize(void);
-int gf2_correct_errors(uint8_t* data, int length);
+// Modifica la dichiarazione così:
+int gf2_correct_errors(uint8_t* data, int length, uint8_t* crc_valid);
 
 void gf2_encode_data(uint8_t* input_data, int input_length, uint8_t* output_codeword);
 

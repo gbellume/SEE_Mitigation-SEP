@@ -417,7 +417,7 @@ void gf2_encode_data(uint8_t* input_data, int input_length, uint8_t* output_code
     }
 }
 
-int gf2_correct_errors(uint8_t* data, int length) {
+int gf2_correct_errors(uint8_t* data, int length, uint8_t* crc_valid) {
     // Pack corrupted byte array into BigPoly
     BigPoly corrupted;
     int num_words = (length + 7) / 8;
@@ -451,6 +451,20 @@ int gf2_correct_errors(uint8_t* data, int length) {
             data[i] = 0;
         }
     }
+
+    // --- NUOVA RIGA: Eseguiamo il CRC sulla parola appena corretta ---
+    *crc_valid = CRC_check(corrupted) ? 1 : 0;
+
+    // Se la lunghezza di error_pos è diversa dal grado di lambda, il BCH ha fallito.
+    // Possiamo restituire -1 per indicare un "BCH Failure" esplicito.
+    int lambda_degree = lambda.size() - 1; 
+    while (lambda_degree > 0 && lambda[lambda_degree] == 0) lambda_degree--;
+    
+    if (error_pos.size() != lambda_degree) {
+        return -1; // Fallimento decodifica BCH
+    }
+
+    return error_pos.size();
 
     // Return the number of errors corrected (or -1 if it failed)
     return error_pos.size(); 

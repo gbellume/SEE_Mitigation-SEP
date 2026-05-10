@@ -4,7 +4,7 @@
 
 
 project: Space_Engineering_Practical
-creation_date: 2026-05-04T16:06:12.713+02:00[Europe/Berlin]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2026-05-10T11:04:01.420+02:00[Europe/Berlin]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 11
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.6.4
@@ -14,8 +14,10 @@ harmony_version: v5.6.4
 compiler: XC32 5.10
 
 modules:
-    - {name: "csp", version: "v3.25.1"}
-    - {name: "CMSIS_5", version: "5.9.1-dev"}
+    - {name: "csp", version: "v3.25.2"}
+    - {name: "core", version: "v3.16.3"}
+    - {name: "CMSIS_5", version: "5.9.0"}
+    - {name: "usb", version: "v3.16.0"}
 
 packs:
     - {name: "SAMV71_DFP", version: "4.10.230"}

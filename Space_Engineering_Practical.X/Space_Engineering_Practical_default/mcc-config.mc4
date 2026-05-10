@@ -5,33 +5,70 @@ device: ATSAMV71Q21B
 deviceLibrary: {}
 groupModules: []
 modules:
+- HarmonyCore
 - cmsis
 - core
 - dfp
+- drv_usbhs_v1
 - efc
+- sys_time
+- tc0
+- usb_device
+- usb_device_cdc
+- usb_device_cdc_0
 generatedFileHashHistoryMap:
+- file: ..\src\app.c
+  hash: 632c78c323cb9f8c6359f20337440c08f8461eb4b0304552b6a3cfd5c4052620
+- file: ..\src\app.h
+  hash: 8e35d8509552a4d1d6e6f123ad75694cf784a707f7dac592ed33b55121aa8e28
 - file: ..\src\config\default\ATSAMV71Q21B.ld
   hash: 0685903c7026c68a5d857ac6258bed5bd6e7748f91c87fdf878c5ecf8a8dccf6
+- file: ..\src\config\default\configuration.h
+  hash: 7c90fccbf3831efe2169fbdeaf4a5f57d6ce710cb90bdb246e7e8dced9126932
 - file: ..\src\config\default\definitions.h
-  hash: 7fe439a00ddff18c90975175e5ed6395ea31e1bf5ef1f4c3c19d4a551169de9f
+  hash: a8f4ca36f99d3bc82c6ebc4c3fabeb4e4d644912792d78ad96f09de31cd81e39
 - file: ..\src\config\default\device.h
   hash: 47f474a3b4b9ec65802211dc057e933edfd7d641d1136f1b0cfde28dcd8725e0
 - file: ..\src\config\default\device_cache.h
   hash: 90ab2a7320a2a8c1123fb5d297dfaa0f56e3cb28c3ad1ea2ab5633988c1ef252
 - file: ..\src\config\default\device_vectors.h
   hash: 50cee28c214e424bfb711628711e010bc9e8f1f9f4e16c02c12e806b7521c833
+- file: ..\src\config\default\driver\driver.h
+  hash: 042fdd289460dbddb8e805850af7e3ac9aea95468e37414959781ebc5b2f454d
+- file: ..\src\config\default\driver\driver_common.h
+  hash: 5217965f6720b4fdf717e99ce9df4f2c9fbd82bbbc9655847166d1eefa806fee
+- file: ..\src\config\default\driver\usb\drv_usb.h
+  hash: ee59efb38b1cf87e1c4bb6e833a9c9be0c106005daa6c1ccd90fca9fb5c17b44
+- file: ..\src\config\default\driver\usb\drv_usb_external_dependencies.h
+  hash: 347035feb1b3460c279e58f4210d0e22e5d1505ec60a69f78375ac81db5e95e8
+- file: ..\src\config\default\driver\usb\usbhsv1\drv_usbhsv1.h
+  hash: ad8ca867c5802433797c3e6834fb5ca94cbdfafc39479d8d8105628f1b09b3f3
+- file: ..\src\config\default\driver\usb\usbhsv1\src\drv_usbhsv1.c
+  hash: 1cab676d57e77fed1e7b34676150fc3ab59c232424473cdf6cbbe1637cec0138
+- file: ..\src\config\default\driver\usb\usbhsv1\src\drv_usbhsv1_device.c
+  hash: cb3da454b05b66e915bb44987941b692f02252e0121df769d48faadcdb924df9
+- file: ..\src\config\default\driver\usb\usbhsv1\src\drv_usbhsv1_local.h
+  hash: a59d5383fca03e36f22e8a3cd4a9ed3b263509556caad4da3836a8652d5e59a4
+- file: ..\src\config\default\driver\usb\usbhsv1\src\drv_usbhsv1_variant_mapping.h
+  hash: 5b4fce5376a794696c8d5d582de5c97d0cb3fa81ffe6022ba83b042d893385b7
 - file: ..\src\config\default\exceptions.c
-  hash: d1fcd7158950bb6ce6461d093cfa2ab341af3e6ea0337a936aa3ee9da98c6e55
+  hash: 251729130964d6a74b7a9ee99700b57a16c0e1b5d31029678e06ecd3d8dedc9e
 - file: ..\src\config\default\initialization.c
-  hash: bee140475f871ff3df91d129540e1614ffa91ae1b864e6bc09940f87f64fd56c
+  hash: cae69077082740b7f131c2e49b55846a325171966f187b3f0e7bc5ec854f1dd9
 - file: ..\src\config\default\interrupts.c
-  hash: 3b044c74ce96b0292ff8cfcc55ca0b7f57b7a638a720b1d887d0f659371a89b6
+  hash: 3968856909573e51bada7fdf5a4b8024f6a83901b7f20dad52ba26a6d7a25ed0
 - file: ..\src\config\default\interrupts.h
-  hash: 01546cb861902ba539183210df560edb11c3bf3b22aba3c5031a32798d0754ea
+  hash: 8dd9b0681b8b63f3b725593a9fc56ad8ea3fecf3e4623cf480b4dd0ad19e50cc
 - file: ..\src\config\default\libc_syscalls.c
   hash: c9afc1b1257829415a1a6746ce3744f0a768b339d59fff2ab3ca1fab58b2a916
+- file: ..\src\config\default\osal\osal.h
+  hash: 1cfe3b61d9693b2369922041eef33fe16b3c1ccd9c85d4ded808b805f90a869c
+- file: ..\src\config\default\osal\osal_definitions.h
+  hash: 5f0a2513a093b6d228e2b50646b204923a82047335a47f3d35a2938309ab6f37
+- file: ..\src\config\default\osal\osal_impl_basic.h
+  hash: 158c4107f883f6d8c0244b73273361d1ca2ebd57c0934572b11a25c532fd22c5
 - file: ..\src\config\default\peripheral\clk\plib_clk.c
-  hash: 707ffec02e3885bb00560f2ba3db3e4a31162893ceb774fca084390430fec0e2
+  hash: c949e3431464050dd6ec686c95f13dff1e8ce861271536f08cbf2ec98aad263d
 - file: ..\src\config\default\peripheral\clk\plib_clk.h
   hash: 4f80a7fdb2529a654f89f11159078b9ebad3e5dddbd7fe60c58df49c05c8e55d
 - file: ..\src\config\default\peripheral\efc\plib_efc.c
@@ -39,21 +76,95 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\peripheral\efc\plib_efc.h
   hash: 7880a0c8d5ac47f4e0e4a173e28729e208a9807234ad9c26ac48c0948f8c9e90
 - file: ..\src\config\default\peripheral\nvic\plib_nvic.c
-  hash: dd717044dd36bdaf83a852c95160c3e8184a8cd8eb45179b6fa65d159c1e7306
+  hash: 550d10bd62e76aa6d61a3391a469d1f71294835a50cac96b4a65a283dd5bf748
 - file: ..\src\config\default\peripheral\nvic\plib_nvic.h
   hash: 9936ac782115af41003255283fa2f603f4ff2212d16275b7c80ea8d067a9e208
 - file: ..\src\config\default\peripheral\pio\plib_pio.c
   hash: e50d9fb053c9cd33dddda099a73751ed9f2feef251113384bb6a1538ec0186a0
 - file: ..\src\config\default\peripheral\pio\plib_pio.h
   hash: 9d10f25f1f0381d08f7bcfc4d00d1be43717939c172af13d7d08f398f3a892d5
+- file: ..\src\config\default\peripheral\tc\plib_tc0.c
+  hash: 4d5a4efca80fca58ba09f149661a63c503f666cce5e3618db12cf62ee28076d7
+- file: ..\src\config\default\peripheral\tc\plib_tc0.h
+  hash: 6df87a9e47edb2a9a36803f7cdf1f33a1e05a1c724f79738cf1735ca9e35b26a
+- file: ..\src\config\default\peripheral\tc\plib_tc_common.h
+  hash: 920c335908d58caf6b00d824870cc7c8b80011a09c27e6ff7b56f6fc237ee5c5
 - file: ..\src\config\default\pin_configurations.csv
   hash: 5e271238d7e818dd81f83b14276d6364e1097ba1dc4bec4630cef2d2a5ad048d
 - file: ..\src\config\default\startup_xc32.c
   hash: 96f78828471adddbe742293fda18ba0ca127dfa6dbc6c3bdf29552de13b14994
 - file: ..\src\config\default\stdio\xc32_monitor.c
   hash: 858f8710d4287200a5ee7f3b3ad7c24f505aed9c05c16956ab0ff9f7bb162a6a
+- file: ..\src\config\default\sys_tasks.h
+  hash: 21f254f497a18a024cd00128d06c4776c2643f867a460c1ba9880a7dd41a8d56
+- file: ..\src\config\default\system\cache\sys_cache.c
+  hash: fe689fc9935d239003803374bdf7d7d1a1ca075abb28bd3df163ab7db26c22d5
+- file: ..\src\config\default\system\cache\sys_cache.h
+  hash: b4b3a4e7434759c9bbcd3c6a0ab97558eb2a007f083a4eb76dbedcb2e2c3d86b
+- file: ..\src\config\default\system\debug\sys_debug.h
+  hash: 4162d9e1fab93b8b33f6c8a24726f5dc287ea05c31e3ab984c3c920c725d0882
+- file: ..\src\config\default\system\int\src\sys_int.c
+  hash: 4281667cc2b84c9e4be1f0dfb3f7d42b77d36c5dcf6513d29ff40262f746cfc6
+- file: ..\src\config\default\system\int\sys_int.h
+  hash: d8207e3358a37e8e964cd563150eda15ac17ec512b6e3c221f5603d9fa2da0ca
+- file: ..\src\config\default\system\int\sys_int_mapping.h
+  hash: 8e6e231f4debf9f25707af7aa1af1f07fbd93596e8045030991b7685290d354c
+- file: ..\src\config\default\system\system.h
+  hash: 2b75f8e370e5cb2c54f70da7351ee149f0d5a7673e700f39b373099716b31b55
+- file: ..\src\config\default\system\system_common.h
+  hash: c9f34bd226f8efab12f5766e77f8355996cd0430b50e0f6ee30258664c494984
+- file: ..\src\config\default\system\system_module.h
+  hash: 7bfe351ce506b843c61e5be013b6e3bf2a6253d73f5db189dbaf0c4f494cb75a
+- file: ..\src\config\default\system\time\src\sys_time.c
+  hash: 4e733ffe4705a0b3f880391fe886ccb0e88c772c1f19c55b4a005747fbf6aa93
+- file: ..\src\config\default\system\time\src\sys_time_local.h
+  hash: df56f970664902417d798760e44978cf4b84c108cf0761647a383e91db76980c
+- file: ..\src\config\default\system\time\sys_time.h
+  hash: 6357468f7670698b16bfb6439d9919ed38eba99d4f03277a8b43ac34586fa1b3
+- file: ..\src\config\default\system\time\sys_time_definitions.h
+  hash: b8c332f36f8a6ed230dc25b1f9f7f2970699947567f80cb06534d405b7a0dd9d
+- file: ..\src\config\default\tasks.c
+  hash: ae8d8bfcbae4ffb1656665591b88d245fe51b118d03053d32a4f37348f42ee1e
 - file: ..\src\config\default\toolchain_specifics.h
   hash: 406ef48ae415706beb0796977cab09342077f7b1efc3f24767bd97bbd5e5a433
+- file: ..\src\config\default\usb\src\usb_device.c
+  hash: 25d4e1719a2948619c4f4b38406f896be37bbb74f4b8f631770ca32e1fe45b77
+- file: ..\src\config\default\usb\src\usb_device_cdc.c
+  hash: b97139f42ed16291e5325ae9a7948351f8be2ac4220b8c737892e063e1fc970f
+- file: ..\src\config\default\usb\src\usb_device_cdc_acm.c
+  hash: 5dc1329306d46c91fbcfb2876f274e10346a2cbcf6b2352cbe2dff7f9759463c
+- file: ..\src\config\default\usb\src\usb_device_cdc_local.h
+  hash: b064eea84ddac7d6fc20c711ef1059da0de3e4a1e02d420d555deca4a44b1c6b
+- file: ..\src\config\default\usb\src\usb_device_function_driver.h
+  hash: 4c01cbdadca6973294d599811f0e06f51b4e6980fac4de25ccafd2742f6a5dd2
+- file: ..\src\config\default\usb\src\usb_device_local.h
+  hash: ebaab2a0356b25ac168e71f5ca84b8a0854a40de6efa8267d04aee1ca878a85e
+- file: ..\src\config\default\usb\src\usb_device_mapping.h
+  hash: 8946c320acdb2ca965664fdf6830d839c8488cb0144d4430d9531fd4408d8df3
+- file: ..\src\config\default\usb\src\usb_external_dependencies.h
+  hash: b12fd8f239e37735d34cbd777cd98b448b9ad8bc4fde516bf6ca8a5c1120163f
+- file: ..\src\config\default\usb\usb_cdc.h
+  hash: 7156ab509a99e1532639ce0826dd8cde6c77581bbe07951e71ec17428deca6c3
+- file: ..\src\config\default\usb\usb_chapter_9.h
+  hash: 3d61e683d79bb62694e1133023063da31853e924dd3a2f27abda159876cd6b9e
+- file: ..\src\config\default\usb\usb_common.h
+  hash: 62970f187809ea73ea9bc418b9101ccc0ab77a47cb11149c778e06a49a83bb51
+- file: ..\src\config\default\usb\usb_device.h
+  hash: 44c976f44c00f873133cd722cdd9565a87f5db68fa7d867ca9d1f717949aa81e
+- file: ..\src\config\default\usb\usb_device_cdc.h
+  hash: cd7f2dee131b1ef8d3cd4bc65094c9e06668ecc6329af8bc26f3cc5844c5ce0b
+- file: ..\src\config\default\usb\usb_host.h
+  hash: 9e71096993b82346d36f826b35ff46d1cecadbfda0fee4ae47125da2764391e4
+- file: ..\src\config\default\usb\usb_host_client_driver.h
+  hash: 274e72a8e34ccc3012d2bb4a100cec9d54ffd296091b35c0f7ec45b528cb34ac
+- file: ..\src\config\default\usb\usb_host_hub_interface.h
+  hash: bcd95afaa026ab8559047e85ac157597452ab0ceee4e96612e5273ec324f1ef9
+- file: ..\src\config\default\usb\usb_hub.h
+  hash: 66a9362619640002d6c8fe6335e044dd7c9cd4fe834d1b2487aa172a08af644b
+- file: ..\src\config\default\usb_device_init_data.c
+  hash: e9f98976df1b31c545393ba9deb45671e5773a5efcaf23b2218098f6bec01fad
+- file: ..\src\config\default\user.h
+  hash: 451e0878e9fcf6cf9fab046c1452ea662757988346c7f39e6bc98478ca25f995
 - file: ..\src\main.c
   hash: d3c233d419e6304bfacbafc18cc68c0f5c26e365f23b20ea40ccfac458f664c5
 - file: ..\src\packs\ATSAMV71Q21B_DFP\component\acc.h

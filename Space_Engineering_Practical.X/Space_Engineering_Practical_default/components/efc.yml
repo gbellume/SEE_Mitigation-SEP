@@ -11,10 +11,21 @@ dependency:
 - dependencyPackage: ''
   name: csp
   type: package
-  version: v3.25.1
+  version: v3.25.2
 customDataClassName: com.microchip.utils_mh3.utils.persistence.CustomModuleData
 data:
   attachments: {}
-  elementPosition: {}
+  elementPosition:
+    attributes:
+      id: __ROOTVIEW
+    children:
+    - children:
+      - attributes:
+          id: efc
+          x: '592'
+          y: '165'
+        type: ElementPosition
+      type: ElementPositions
+    type: ComponentGraph
   symbols: {}
   userData: {}

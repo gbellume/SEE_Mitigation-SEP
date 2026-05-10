@@ -1,0 +1,99 @@
+configVersion: 1.0.0
+componentName: usb_device
+coreVersion: 5.8.4
+device: ATSAMV71Q21B
+library: []
+dependency:
+- dependencyPackage: class com.microchip.mcc.harmony.HarmonyModule
+  name: usb_device
+  type: module
+  version: ''
+- dependencyPackage: ''
+  name: usb
+  type: package
+  version: v3.16.0
+customDataClassName: com.microchip.utils_mh3.utils.persistence.CustomModuleData
+data:
+  attachments: {}
+  elementPosition:
+    attributes:
+      id: __ROOTVIEW
+    children:
+    - children:
+      - attributes:
+          id: usb_device
+          x: '398'
+          y: '9'
+        type: ElementPosition
+      type: ElementPositions
+    type: ComponentGraph
+  symbols:
+    CONFIG_USB_DEVICE_CONFIG_DESCRPTR_SIZE:
+      attributes:
+        id: CONFIG_USB_DEVICE_CONFIG_DESCRPTR_SIZE
+      children:
+      - children:
+        - attributes:
+            id: usb_device
+            value: '199'
+          type: Dynamic
+        type: Values
+      type: Integer
+    CONFIG_USB_DEVICE_ENDPOINTS_NUMBER:
+      attributes:
+        id: CONFIG_USB_DEVICE_ENDPOINTS_NUMBER
+      children:
+      - children:
+        - attributes:
+            id: usb_device
+            value: '9'
+          type: Dynamic
+        type: Values
+      type: Integer
+    CONFIG_USB_DEVICE_FUNCTIONS_NUMBER:
+      attributes:
+        id: CONFIG_USB_DEVICE_FUNCTIONS_NUMBER
+      children:
+      - children:
+        - attributes:
+            id: usb_device
+            value: '3'
+          type: Dynamic
+        type: Values
+      type: Integer
+    CONFIG_USB_DEVICE_INTERFACES_NUMBER:
+      attributes:
+        id: CONFIG_USB_DEVICE_INTERFACES_NUMBER
+      children:
+      - children:
+        - attributes:
+            id: usb_device
+            value: '6'
+          type: Dynamic
+        type: Values
+      type: Integer
+    USB_DEVICE_SYS_RTOS_TASK:
+      attributes:
+        id: USB_DEVICE_SYS_RTOS_TASK
+      children:
+      - children:
+        - attributes:
+            id: enabled
+          children:
+          - type: Value
+            value: 'false'
+          type: Boolean
+        type: Attributes
+      type: File
+    CONFIG_USB_DEVICE_DESCRIPTOR_IAD_ENABLE:
+      attributes:
+        id: CONFIG_USB_DEVICE_DESCRIPTOR_IAD_ENABLE
+      children:
+      - children:
+        - attributes:
+            id: usb_device
+            value: 'true'
+          type: Dynamic
+        type: Values
+      type: Boolean
+  userData: {}
