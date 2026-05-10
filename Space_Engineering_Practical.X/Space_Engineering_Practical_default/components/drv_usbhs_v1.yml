@@ -103,4 +103,22 @@ data:
           type: User
         type: Values
       type: Combo
+    USB_DEVICE_VBUS_SENSE:
+      attributes:
+        id: USB_DEVICE_VBUS_SENSE
+      children:
+      - children:
+        - attributes:
+            id: visible
+          children:
+          - type: Value
+            value: 'true'
+          type: Boolean
+        type: Attributes
+      - children:
+        - attributes:
+            value: 'false'
+          type: User
+        type: Values
+      type: Boolean
   userData: {}

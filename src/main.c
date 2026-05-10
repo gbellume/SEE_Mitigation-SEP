@@ -1,29 +1,31 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "definitions.h" // Questo include i driver USB generati da Harmony
+#include <stdint.h>
+#include "definitions.h" 
 #include "gf2_poly.h"
 
-// --- Configurazione Test ---
+// --- Configuration Test ---
 #define PAYLOAD_SIZE_BYTES 590 
 #define CODEWORD_SIZE_BYTES 598 
 volatile uint8_t TARGET_BIT_FLIPS = 2; 
 
-// --- Variabili USB ---
+// --- USB Variables ---
 static bool is_usb_configured = false;
 static bool is_read_complete = false;
 static bool is_write_complete = false;
 static USB_DEVICE_CDC_TRANSFER_HANDLE readTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
 static USB_DEVICE_CDC_TRANSFER_HANDLE writeTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
+static USB_DEVICE_HANDLE usbDeviceHandle = USB_DEVICE_HANDLE_INVALID; // NEW: Device Handle
 
-// Buffer allineati per l'USB (requisito hardware del DMA)
+// Aligned buffers for USB DMA hardware
 uint8_t CACHE_ALIGN rx_buffer[PAYLOAD_SIZE_BYTES];
 uint8_t CACHE_ALIGN tx_buffer[CODEWORD_SIZE_BYTES + 5]; // 598 + 4 (BCH) + 1 (CRC) = 603 bytes
 
 uint8_t codeword_buffer[CODEWORD_SIZE_BYTES];
 uint8_t flash_read_buffer[CODEWORD_SIZE_BYTES];
 
-// --- Funzione Iniezione Errori (invariata) ---
+// --- Error Injection Function ---
 void inject_errors(uint8_t* codeword, uint32_t byte_length, uint8_t num_flips) {
     if (num_flips == 0) return;
     uint32_t total_bits = byte_length * 8;
@@ -48,8 +50,7 @@ void inject_errors(uint8_t* codeword, uint32_t byte_length, uint8_t num_flips) {
     }
 }
 
-// --- Callback USB ---
-// Questa funzione viene chiamata in automatico dall'hardware quando succede qualcosa sull'USB
+// --- USB Callbacks ---
 USB_DEVICE_CDC_EVENT_RESPONSE APP_USBDeviceCDCEventHandler(
     USB_DEVICE_CDC_INDEX index, 
     USB_DEVICE_CDC_EVENT event, 
@@ -58,13 +59,13 @@ USB_DEVICE_CDC_EVENT_RESPONSE APP_USBDeviceCDCEventHandler(
     switch (event) {
         case USB_DEVICE_CDC_EVENT_SET_LINE_CODING:
         case USB_DEVICE_CDC_EVENT_SET_CONTROL_LINE_STATE:
-            USB_DEVICE_ControlStatus(0, USB_DEVICE_CONTROL_STATUS_OK);
+            USB_DEVICE_ControlStatus(usbDeviceHandle, USB_DEVICE_CONTROL_STATUS_OK);
             break;
         case USB_DEVICE_CDC_EVENT_READ_COMPLETE:
-            is_read_complete = true; // Il PC ci ha inviato i dati!
+            is_read_complete = true; 
             break;
         case USB_DEVICE_CDC_EVENT_WRITE_COMPLETE:
-            is_write_complete = true; // Abbiamo finito di inviare i dati al PC
+            is_write_complete = true; 
             break;
         default: break;
     }
@@ -75,11 +76,11 @@ void APP_USBDeviceEventHandler(USB_DEVICE_EVENT event, void * eventData, uintptr
     switch(event) {
         case USB_DEVICE_EVENT_CONFIGURED:
             is_usb_configured = true;
-            // Colleghiamo la callback CDC
             USB_DEVICE_CDC_EventHandlerSet(USB_DEVICE_CDC_INDEX_0, APP_USBDeviceCDCEventHandler, 0);
             break;
         case USB_DEVICE_EVENT_SUSPENDED:
-        case USB_DEVICE_EVENT_DETACHED:
+        case USB_DEVICE_EVENT_RESET: // FIXED: Was DETACHED
+        case USB_DEVICE_EVENT_DECONFIGURED:
             is_usb_configured = false;
             break;
         default: break;
@@ -88,27 +89,27 @@ void APP_USBDeviceEventHandler(USB_DEVICE_EVENT event, void * eventData, uintptr
 
 // --- Main Application ---
 int main(void) {
-    // 1. Inizializzazione Hardware Completa (Generata da Harmony)
     SYS_Initialize(NULL); 
-    
     srand(12345); 
     gf2_initialize(); 
 
-    // Apriamo il driver USB
-    USB_DEVICE_EventHandlerSet(APP_USBDeviceEventHandler, 0);
-    USB_DEVICE_Attach(USB_DEVICE_INDEX_0);
-
-    // Variabile di stato per il nostro ciclo
     enum { WAIT_FOR_CONFIG, WAIT_FOR_READ, PROCESS_DATA, WAIT_FOR_WRITE } appState = WAIT_FOR_CONFIG;
 
     while (1) {
-        // Mantiene in vita i task di sistema (USB, ecc.)
         SYS_Tasks();
 
         switch(appState) {
             case WAIT_FOR_CONFIG:
+                // FIXED: Open the USB device properly to get the Handle
+                if (usbDeviceHandle == USB_DEVICE_HANDLE_INVALID) {
+                    usbDeviceHandle = USB_DEVICE_Open(USB_DEVICE_INDEX_0, DRV_IO_INTENT_READWRITE);
+                    if (usbDeviceHandle != USB_DEVICE_HANDLE_INVALID) {
+                        USB_DEVICE_EventHandlerSet(usbDeviceHandle, APP_USBDeviceEventHandler, 0);
+                        USB_DEVICE_Attach(usbDeviceHandle); 
+                    }
+                }
+
                 if (is_usb_configured) {
-                    // Cavo collegato e driver riconosciuto dal PC. Mettiamoci in ascolto.
                     is_read_complete = false;
                     USB_DEVICE_CDC_Read(USB_DEVICE_CDC_INDEX_0, &readTransferHandle, rx_buffer, PAYLOAD_SIZE_BYTES);
                     appState = WAIT_FOR_READ;
@@ -116,29 +117,22 @@ int main(void) {
                 break;
 
             case WAIT_FOR_READ:
-                if (!is_usb_configured) { appState = WAIT_FOR_CONFIG; break; } // Cavo staccato
+                if (!is_usb_configured) { appState = WAIT_FOR_CONFIG; break; } 
                 
                 if (is_read_complete) {
-                    // Dati ricevuti! Passiamo alla matematica
                     appState = PROCESS_DATA;
                 }
                 break;
 
             case PROCESS_DATA:
-                // 3. Encode
                 gf2_encode_data(rx_buffer, PAYLOAD_SIZE_BYTES, codeword_buffer);
-
-                // 4. Corrupt
                 inject_errors(codeword_buffer, CODEWORD_SIZE_BYTES, TARGET_BIT_FLIPS);
 
-                // 5. Memory Simulation (Per ora copia diretta)
                 for(int i=0; i<CODEWORD_SIZE_BYTES; i++) flash_read_buffer[i] = codeword_buffer[i];
 
-                // 6. Decode
                 uint8_t crc_status = 0;
                 int bch_status = gf2_correct_errors(flash_read_buffer, CODEWORD_SIZE_BYTES, &crc_status);
 
-                // Prepariamo il pacchetto di risposta (603 byte totali)
                 for(int i=0; i<CODEWORD_SIZE_BYTES; i++) tx_buffer[i] = flash_read_buffer[i];
                 tx_buffer[CODEWORD_SIZE_BYTES]     = (bch_status >> 0) & 0xFF;
                 tx_buffer[CODEWORD_SIZE_BYTES + 1] = (bch_status >> 8) & 0xFF;
@@ -146,7 +140,6 @@ int main(void) {
                 tx_buffer[CODEWORD_SIZE_BYTES + 3] = (bch_status >> 24) & 0xFF;
                 tx_buffer[CODEWORD_SIZE_BYTES + 4] = crc_status;
 
-                // 7. Trasmetti
                 is_write_complete = false;
                 USB_DEVICE_CDC_Write(USB_DEVICE_CDC_INDEX_0, &writeTransferHandle, tx_buffer, sizeof(tx_buffer), USB_DEVICE_CDC_TRANSFER_FLAGS_DATA_COMPLETE);
                 appState = WAIT_FOR_WRITE;
@@ -156,7 +149,6 @@ int main(void) {
                 if (!is_usb_configured) { appState = WAIT_FOR_CONFIG; break; }
                 
                 if (is_write_complete) {
-                    // Invio completato. Rimettiamoci subito in ascolto per il prossimo blocco!
                     is_read_complete = false;
                     USB_DEVICE_CDC_Read(USB_DEVICE_CDC_INDEX_0, &readTransferHandle, rx_buffer, PAYLOAD_SIZE_BYTES);
                     appState = WAIT_FOR_READ;
