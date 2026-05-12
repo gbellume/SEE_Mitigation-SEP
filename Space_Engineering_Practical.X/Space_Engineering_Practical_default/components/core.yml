@@ -4786,7 +4786,7 @@ data:
       - children:
         - attributes:
             id: core
-            value: '1048576'
+            value: '1055744'
           type: Dynamic
         type: Values
       type: Hex
@@ -5561,6 +5561,695 @@ data:
           type: Dynamic
         type: Values
       type: Boolean
+    PIN_55_FUNCTION_TYPE:
+      attributes:
+        id: PIN_55_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIOD_PDR_VALUE:
+      attributes:
+        id: PIOD_PDR_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIOD_ABCDSR1_VALUE:
+      attributes:
+        id: PIOD_ABCDSR1_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIOD_ABCDSR2_VALUE:
+      attributes:
+        id: PIOD_ABCDSR2_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIN_55_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_55_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_55_FUNCTION_NAME:
+      attributes:
+        id: PIN_55_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D0
+          type: User
+        type: Values
+      type: String
+    PIN_57_FUNCTION_TYPE:
+      attributes:
+        id: PIN_57_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_57_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_57_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_57_FUNCTION_NAME:
+      attributes:
+        id: PIN_57_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D3
+          type: User
+        type: Values
+      type: String
+    PIN_54_FUNCTION_TYPE:
+      attributes:
+        id: PIN_54_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIOC_PDR_VALUE:
+      attributes:
+        id: PIOC_PDR_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIOC_ABCDSR1_VALUE:
+      attributes:
+        id: PIOC_ABCDSR1_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIOC_ABCDSR2_VALUE:
+      attributes:
+        id: PIOC_ABCDSR2_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIN_54_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_54_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_54_FUNCTION_NAME:
+      attributes:
+        id: PIN_54_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D2
+          type: User
+        type: Values
+      type: String
+    PIN_46_FUNCTION_TYPE:
+      attributes:
+        id: PIN_46_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_46_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_46_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_46_FUNCTION_NAME:
+      attributes:
+        id: PIN_46_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D1
+          type: User
+        type: Values
+      type: String
+    PIN_52_FUNCTION_TYPE:
+      attributes:
+        id: PIN_52_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_52_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_52_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_52_FUNCTION_NAME:
+      attributes:
+        id: PIN_52_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D4
+          type: User
+        type: Values
+      type: String
+    PIN_60_FUNCTION_TYPE:
+      attributes:
+        id: PIN_60_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_60_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_60_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_60_FUNCTION_NAME:
+      attributes:
+        id: PIN_60_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D5
+          type: User
+        type: Values
+      type: String
+    PIN_58_FUNCTION_TYPE:
+      attributes:
+        id: PIN_58_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_58_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_58_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_58_FUNCTION_NAME:
+      attributes:
+        id: PIN_58_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D6
+          type: User
+        type: Values
+      type: String
+    PIN_56_FUNCTION_TYPE:
+      attributes:
+        id: PIN_56_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_56_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_56_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_56_FUNCTION_NAME:
+      attributes:
+        id: PIN_56_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_D7
+          type: User
+        type: Values
+      type: String
+    PIN_117_FUNCTION_TYPE:
+      attributes:
+        id: PIN_117_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_117_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_117_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_117_FUNCTION_NAME:
+      attributes:
+        id: PIN_117_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_WE
+          type: User
+        type: Values
+      type: String
+    PIOC_OER_VALUE:
+      attributes:
+        id: PIOC_OER_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '3932160'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIN_117_DIR:
+      attributes:
+        id: PIN_117_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_58_DIR:
+      attributes:
+        id: PIN_58_DIR
+      children:
+      - children:
+        - attributes:
+            value: ''
+          type: User
+        type: Values
+      type: String
+    PIOC_SODR_VALUE:
+      attributes:
+        id: PIOC_SODR_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '3670016'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIN_58_LAT:
+      attributes:
+        id: PIN_58_LAT
+      children:
+      - children:
+        - attributes:
+            value: ''
+          type: User
+        type: Values
+      type: String
+    PIN_66_FUNCTION_TYPE:
+      attributes:
+        id: PIN_66_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_66_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_66_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_66_FUNCTION_NAME:
+      attributes:
+        id: PIN_66_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_RE
+          type: User
+        type: Values
+      type: String
+    PIN_66_DIR:
+      attributes:
+        id: PIN_66_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_68_FUNCTION_TYPE:
+      attributes:
+        id: PIN_68_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_68_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_68_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_68_FUNCTION_NAME:
+      attributes:
+        id: PIN_68_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_CLE
+          type: User
+        type: Values
+      type: String
+    PIN_68_DIR:
+      attributes:
+        id: PIN_68_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_111_FUNCTION_TYPE:
+      attributes:
+        id: PIN_111_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_111_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_111_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_111_FUNCTION_NAME:
+      attributes:
+        id: PIN_111_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: NAND_ALE
+          type: User
+        type: Values
+      type: String
+    PIN_111_DIR:
+      attributes:
+        id: PIN_111_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_120_FUNCTION_TYPE:
+      attributes:
+        id: PIN_120_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_120_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_120_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_120_FUNCTION_NAME:
+      attributes:
+        id: PIN_120_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: FLASH1_CE
+          type: User
+        type: Values
+      type: String
+    PIN_120_DIR:
+      attributes:
+        id: PIN_120_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_64_FUNCTION_TYPE:
+      attributes:
+        id: PIN_64_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_64_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_64_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_64_FUNCTION_NAME:
+      attributes:
+        id: PIN_64_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: FLASH2_CE
+          type: User
+        type: Values
+      type: String
+    PIN_64_DIR:
+      attributes:
+        id: PIN_64_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_122_FUNCTION_TYPE:
+      attributes:
+        id: PIN_122_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_122_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_122_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_122_FUNCTION_NAME:
+      attributes:
+        id: PIN_122_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: FLASH3_CE
+          type: User
+        type: Values
+      type: String
+    PIN_122_DIR:
+      attributes:
+        id: PIN_122_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
+          type: User
+        type: Values
+      type: String
+    PIN_122_LAT:
+      attributes:
+        id: PIN_122_LAT
+      children:
+      - children:
+        - attributes:
+            value: High
+          type: User
+        type: Values
+      type: String
+    PIN_120_LAT:
+      attributes:
+        id: PIN_120_LAT
+      children:
+      - children:
+        - attributes:
+            value: High
+          type: User
+        type: Values
+      type: String
+    PIN_117_LAT:
+      attributes:
+        id: PIN_117_LAT
+      children:
+      - children:
+        - attributes:
+            value: High
+          type: User
+        type: Values
+      type: String
+    PIOA_SODR_VALUE:
+      attributes:
+        id: PIOA_SODR_VALUE
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '3072'
+          type: Dynamic
+        type: Values
+      type: Hex
+    PIN_64_LAT:
+      attributes:
+        id: PIN_64_LAT
+      children:
+      - children:
+        - attributes:
+            value: High
+          type: User
+        type: Values
+      type: String
+    PIN_66_LAT:
+      attributes:
+        id: PIN_66_LAT
+      children:
+      - children:
+        - attributes:
+            value: High
+          type: User
+        type: Values
+      type: String
   userData:
     children:
     - attributes:
