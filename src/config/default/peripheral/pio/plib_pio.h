@@ -71,6 +71,33 @@
 #define LED_TEST_Get()               ((PIOA_REGS->PIO_PDSR >> 20U) & 0x1U)
 #define LED_TEST_PIN                  PIO_PIN_PA20
 
+/*** Macros for F3_RB pin ***/
+#define F3_RB_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<1U))
+#define F3_RB_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<1U))
+#define F3_RB_Toggle()            (PIOC_REGS->PIO_ODSR ^= ((uint32_t)1U<<1U))
+#define F3_RB_OutputEnable()      (PIOC_REGS->PIO_OER = ((uint32_t)1U<<1U))
+#define F3_RB_InputEnable()       (PIOC_REGS->PIO_ODR = ((uint32_t)1U<<1U))
+#define F3_RB_Get()               ((PIOC_REGS->PIO_PDSR >> 1U) & 0x1U)
+#define F3_RB_PIN                  PIO_PIN_PC1
+
+/*** Macros for F2_RB pin ***/
+#define F2_RB_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<2U))
+#define F2_RB_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<2U))
+#define F2_RB_Toggle()            (PIOC_REGS->PIO_ODSR ^= ((uint32_t)1U<<2U))
+#define F2_RB_OutputEnable()      (PIOC_REGS->PIO_OER = ((uint32_t)1U<<2U))
+#define F2_RB_InputEnable()       (PIOC_REGS->PIO_ODR = ((uint32_t)1U<<2U))
+#define F2_RB_Get()               ((PIOC_REGS->PIO_PDSR >> 2U) & 0x1U)
+#define F2_RB_PIN                  PIO_PIN_PC2
+
+/*** Macros for F1_RB pin ***/
+#define F1_RB_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<3U))
+#define F1_RB_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<3U))
+#define F1_RB_Toggle()            (PIOC_REGS->PIO_ODSR ^= ((uint32_t)1U<<3U))
+#define F1_RB_OutputEnable()      (PIOC_REGS->PIO_OER = ((uint32_t)1U<<3U))
+#define F1_RB_InputEnable()       (PIOC_REGS->PIO_ODR = ((uint32_t)1U<<3U))
+#define F1_RB_Get()               ((PIOC_REGS->PIO_PDSR >> 3U) & 0x1U)
+#define F1_RB_PIN                  PIO_PIN_PC3
+
 /*** Macros for NAND_D1 pin ***/
 #define NAND_D1_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<23U))
 #define NAND_D1_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<23U))

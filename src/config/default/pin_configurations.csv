@@ -29,9 +29,9 @@
 35,PA7,,Available,In,,,,,,,
 36,PA8,,Available,In,,,,,,,
 37,PA22,,Available,In,,,,,,,
-38,PC1,,Available,In,,,,,,,
-39,PC2,,Available,In,,,,,,,
-40,PC3,,Available,In,,,,,,,
+38,PC1,F3_RB,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
+39,PC2,F2_RB,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
+40,PC3,F1_RB,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 41,PC4,,Available,In,,,,,,,
 42,PA13,,Available,In,,,,,,,
 45,PA16,,Available,In,,,,,,,

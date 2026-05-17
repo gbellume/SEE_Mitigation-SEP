@@ -83,59 +83,53 @@ void NAND_Address(uint8_t addr) {
 }
 
 // =============================================================================
-// 3. HARDWARE NAND DRIVERS (Tailored for Micron MT29F32G08 & TMR Flash 1)
+// 3. HARDWARE NAND DRIVERS (Unified Codeword Operations)
 // =============================================================================
 
-void HW_NAND_Write_MainArea(uint32_t page_address, uint8_t* data, uint32_t size) {
-    FLASH1_CE_Clear(); // Turn ON Flash 1 (Active Low)
+void HW_NAND_Write_Codeword(uint32_t page_address, uint8_t* payload, uint8_t* parity) {
+    FLASH1_CE_Clear(); // Turn ON Flash 1
 
     NAND_Command(0x80); // ONFI: Setup Write
 
-    // Send 5-byte Address (Starting at column 0x0000)
-    NAND_Address(0x00); // Column Low
-    NAND_Address(0x00); // Column High
-    NAND_Address(page_address & 0xFF);         // Row (Page) Low
-    NAND_Address((page_address >> 8) & 0xFF);  // Row (Page) Mid
-    NAND_Address((page_address >> 16) & 0xFF); // Row (Page) High
+    // 1. Send 5-byte Address for Main Area (Column 0x0000)
+    NAND_Address(0x00); 
+    NAND_Address(0x00); 
+    NAND_Address(page_address & 0xFF);         
+    NAND_Address((page_address >> 8) & 0xFF);  
+    NAND_Address((page_address >> 16) & 0xFF); 
 
-    for(uint32_t i = 0; i < size; i++) {
-        NAND_WriteByte(data[i]);
+    // 2. Send the 512 bytes of Payload data
+    for(uint32_t i = 0; i < PAYLOAD_SIZE_BYTES; i++) {
+        NAND_WriteByte(payload[i]);
     }
 
-    NAND_Command(0x10); // ONFI: Execute Program (Burn to silicon)
-    
-    // Wait for the Flash to finish programming
-    for(volatile int wait=0; wait<10000; wait++); 
+    NAND_Command(0x85); // ONFI: Random Data Input (Change column address)
+
+    // 3. Move pointer to the PHYSICAL OOB area (Column 4096 -> 0x1000)
+    NAND_Address(0x00); 
+    NAND_Address(0x10); 
+
+    // 4. Send the 8 parity bytes (BCH + CRC)
+    for(uint32_t i = 0; i < PARITY_SIZE_BYTES; i++) {
+        NAND_WriteByte(parity[i]);
+    }
+
+    NAND_Command(0x10); // ONFI: Execute Program (Burn ALL 520 bytes to silicon at once)
+
+    // --- SMART HARDWARE POLLING ---
+    while(F1_RB_Get() == 0) {
+        // Wait for the physical Ready signal
+    }
 
     FLASH1_CE_Set(); // Turn OFF Flash 1
 }
 
-void HW_NAND_Write_OOB(uint32_t page_address, uint8_t* data, uint32_t size) {
-    FLASH1_CE_Clear(); 
-
-    NAND_Command(0x85); // ONFI: Random Data Input
-
-    // Move pointer to the PHYSICAL OOB area of the Micron chip (Column 4096 -> 0x1000)
-    NAND_Address(0x00); // Column Low  (0x00)
-    NAND_Address(0x10); // Column High (0x10)
-
-    for(uint32_t i = 0; i < size; i++) {
-        NAND_WriteByte(data[i]);
-    }
-
-    NAND_Command(0x10); // Execute Program
-
-    for(volatile int wait=0; wait<10000; wait++); 
-
-    FLASH1_CE_Set();
-}
-
-void HW_NAND_Read_MainArea(uint32_t page_address, uint8_t* data, uint32_t size) {
+void HW_NAND_Read_Codeword(uint32_t page_address, uint8_t* payload, uint8_t* parity) {
     FLASH1_CE_Clear(); 
 
     NAND_Command(0x00); // ONFI: Read Setup
 
-    // Send 5-byte Address (Starting at column 0x0000)
+    // 1. Send 5-byte Address (Starting at column 0x0000)
     NAND_Address(0x00); 
     NAND_Address(0x00); 
     NAND_Address(page_address & 0xFF);         
@@ -144,34 +138,33 @@ void HW_NAND_Read_MainArea(uint32_t page_address, uint8_t* data, uint32_t size) 
 
     NAND_Command(0x30); // ONFI: Read Execute
 
-    // Wait for the Flash to prepare data from the array
-    for(volatile int wait=0; wait<1000; wait++);
-
-    for(uint32_t i = 0; i < size; i++) {
-        data[i] = NAND_ReadByte();
+    // --- SMART HARDWARE POLLING ---
+    while(F1_RB_Get() == 0) {
+        // Wait for the Flash to move data to the output register
     }
 
-    FLASH1_CE_Set();
-}
+    // 2. Read the 512 payload bytes
+    for(uint32_t i = 0; i < PAYLOAD_SIZE_BYTES; i++) {
+        payload[i] = NAND_ReadByte();
+    }
 
-void HW_NAND_Read_OOB(uint32_t page_address, uint8_t* data, uint32_t size) {
-    FLASH1_CE_Clear(); 
-
-    NAND_Command(0x05); // ONFI: Random Data Output (Move within the open page)
+    NAND_Command(0x05); // ONFI: Random Data Output (Move column)
     
-    // Move pointer to the physical OOB area (Column 4096 -> 0x1000)
+    // 3. Move pointer to the physical OOB area (Column 4096 -> 0x1000)
     NAND_Address(0x00); 
     NAND_Address(0x10); 
 
     NAND_Command(0xE0); // Confirm column move
 
-    for(uint32_t i = 0; i < size; i++) {
-        data[i] = NAND_ReadByte();
+    while(F1_RB_Get() == 0) {} // Safety wait
+
+    // 4. Read the 8 parity bytes
+    for(uint32_t i = 0; i < PARITY_SIZE_BYTES; i++) {
+        parity[i] = NAND_ReadByte();
     }
 
     FLASH1_CE_Set();
 }
-
 // =============================================================================
 // 4. USB AND APPLICATION STATE MACHINE
 // =============================================================================
@@ -281,13 +274,11 @@ int main(void) {
                 // 2. Inject Simulated Radiation Errors
                 inject_errors(codeword_buffer, CODEWORD_SIZE_BYTES, TARGET_BIT_FLIPS);
 
-                // 3. Hardware Write (Payload to 0x0000, Parity to OOB at 0x1000)
-                HW_NAND_Write_MainArea(current_nand_page, codeword_buffer, PAYLOAD_SIZE_BYTES);
-                HW_NAND_Write_OOB(current_nand_page, &codeword_buffer[PAYLOAD_SIZE_BYTES], PARITY_SIZE_BYTES);
+                // 3. Hardware Write (Payload and Parity in one continuous operation)
+                HW_NAND_Write_Codeword(current_nand_page, codeword_buffer, &codeword_buffer[PAYLOAD_SIZE_BYTES]);
 
-                // 4. Hardware Read
-                HW_NAND_Read_MainArea(current_nand_page, flash_read_buffer, PAYLOAD_SIZE_BYTES);
-                HW_NAND_Read_OOB(current_nand_page, &flash_read_buffer[PAYLOAD_SIZE_BYTES], PARITY_SIZE_BYTES);
+                // 4. Hardware Read (Payload and Parity in one continuous operation)
+                HW_NAND_Read_Codeword(current_nand_page, flash_read_buffer, &flash_read_buffer[PAYLOAD_SIZE_BYTES]);
 
                 // 5. Decode and Correct
                 uint8_t crc_status = 0;
