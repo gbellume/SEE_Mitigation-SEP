@@ -22,8 +22,8 @@ data:
     - children:
       - attributes:
           id: usb_device_cdc
-          x: '600'
-          y: '10'
+          x: '596'
+          y: '18'
         type: ElementPosition
       type: ElementPositions
     type: ComponentGraph

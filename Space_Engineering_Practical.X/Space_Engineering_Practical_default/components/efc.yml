@@ -22,10 +22,21 @@ data:
     - children:
       - attributes:
           id: efc
-          x: '577'
-          y: '157'
+          x: '454'
+          y: '217'
         type: ElementPosition
       type: ElementPositions
     type: ComponentGraph
-  symbols: {}
+  symbols:
+    NVM_RWS:
+      attributes:
+        id: NVM_RWS
+      children:
+      - children:
+        - attributes:
+            id: efc
+            value: '6'
+          type: Dynamic
+        type: Values
+      type: Integer
   userData: {}

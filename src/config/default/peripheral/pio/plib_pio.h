@@ -62,15 +62,6 @@
 // *****************************************************************************
 
 
-/*** Macros for LED_TEST pin ***/
-#define LED_TEST_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<20U))
-#define LED_TEST_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<20U))
-#define LED_TEST_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<20U))
-#define LED_TEST_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<20U))
-#define LED_TEST_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<20U))
-#define LED_TEST_Get()               ((PIOA_REGS->PIO_PDSR >> 20U) & 0x1U)
-#define LED_TEST_PIN                  PIO_PIN_PA20
-
 /*** Macros for F3_RB pin ***/
 #define F3_RB_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<1U))
 #define F3_RB_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<1U))
@@ -196,6 +187,15 @@
 #define NAND_CLE_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<12U))
 #define NAND_CLE_Get()               ((PIOA_REGS->PIO_PDSR >> 12U) & 0x1U)
 #define NAND_CLE_PIN                  PIO_PIN_PA12
+
+/*** Macros for KMS pin ***/
+#define KMS_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<0U))
+#define KMS_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<0U))
+#define KMS_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<0U))
+#define KMS_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<0U))
+#define KMS_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<0U))
+#define KMS_Get()               ((PIOA_REGS->PIO_PDSR >> 0U) & 0x1U)
+#define KMS_PIN                  PIO_PIN_PA0
 
 /*** Macros for NAND_ALE pin ***/
 #define NAND_ALE_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<18U))

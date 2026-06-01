@@ -4786,7 +4786,7 @@ data:
       - children:
         - attributes:
             id: core
-            value: '1055744'
+            value: '7169'
           type: Dynamic
         type: Values
       type: Hex
@@ -4796,7 +4796,7 @@ data:
       children:
       - children:
         - attributes:
-            value: Out
+            value: ''
           type: User
         type: Values
       type: String
@@ -4806,7 +4806,7 @@ data:
       children:
       - children:
         - attributes:
-            value: GPIO
+            value: ''
           type: User
         type: Values
       type: String
@@ -4849,7 +4849,7 @@ data:
       children:
       - children:
         - attributes:
-            value: GPIO
+            value: ''
           type: User
         type: Values
       type: String
@@ -4859,7 +4859,7 @@ data:
       children:
       - children:
         - attributes:
-            value: LED_TEST
+            value: ''
           type: User
         type: Values
       type: String
@@ -6337,6 +6337,510 @@ data:
       - children:
         - attributes:
             value: F3_RB
+          type: User
+        type: Values
+      type: String
+    PMC_USB_USBDIV:
+      attributes:
+        id: PMC_USB_USBDIV
+      children:
+      - children:
+        - attributes:
+            value: '10'
+          type: User
+        type: Values
+      type: Integer
+    TWIHS0_CLOCK_FREQUENCY:
+      attributes:
+        id: TWIHS0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    ISI_CLOCK_FREQUENCY:
+      attributes:
+        id: ISI_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    AES_CLOCK_FREQUENCY:
+      attributes:
+        id: AES_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PWM0_CLOCK_FREQUENCY:
+      attributes:
+        id: PWM0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    SMC_CLOCK_FREQUENCY:
+      attributes:
+        id: SMC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    AFEC0_CLOCK_FREQUENCY:
+      attributes:
+        id: AFEC0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    QSPI_CLOCK_FREQUENCY:
+      attributes:
+        id: QSPI_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    SPI0_CLOCK_FREQUENCY:
+      attributes:
+        id: SPI0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    ICM_CLOCK_FREQUENCY:
+      attributes:
+        id: ICM_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PIOE_CLOCK_FREQUENCY:
+      attributes:
+        id: PIOE_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PIOB_CLOCK_FREQUENCY:
+      attributes:
+        id: PIOB_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    ACC_CLOCK_FREQUENCY:
+      attributes:
+        id: ACC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PIOC_CLOCK_FREQUENCY:
+      attributes:
+        id: PIOC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    XDMAC_CLOCK_FREQUENCY:
+      attributes:
+        id: XDMAC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    GMAC_CLOCK_FREQUENCY:
+      attributes:
+        id: GMAC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PWM1_CLOCK_FREQUENCY:
+      attributes:
+        id: PWM1_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PIOD_CLOCK_FREQUENCY:
+      attributes:
+        id: PIOD_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    SPI1_CLOCK_FREQUENCY:
+      attributes:
+        id: SPI1_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    DACC_CLOCK_FREQUENCY:
+      attributes:
+        id: DACC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    AFEC1_CLOCK_FREQUENCY:
+      attributes:
+        id: AFEC1_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    TC0_CH3_CLOCK_FREQUENCY:
+      attributes:
+        id: TC0_CH3_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    TWIHS2_CLOCK_FREQUENCY:
+      attributes:
+        id: TWIHS2_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    HSMCI_CLOCK_FREQUENCY:
+      attributes:
+        id: HSMCI_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    MLB_CLOCK_FREQUENCY:
+      attributes:
+        id: MLB_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    PIOA_CLOCK_FREQUENCY:
+      attributes:
+        id: PIOA_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    TRNG_CLOCK_FREQUENCY:
+      attributes:
+        id: TRNG_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    TWIHS1_CLOCK_FREQUENCY:
+      attributes:
+        id: TWIHS1_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    SSC_CLOCK_FREQUENCY:
+      attributes:
+        id: SSC_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    MASTER_CLOCK_FREQUENCY:
+      attributes:
+        id: MASTER_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            value: '150000000'
+          type: User
+        type: Values
+      type: String
+    SYSTICK_PERIOD:
+      attributes:
+        id: SYSTICK_PERIOD
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '0x493E0'
+          type: Dynamic
+        type: Values
+      type: String
+    SYSTICK_PERIOD_US:
+      attributes:
+        id: SYSTICK_PERIOD_US
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '1000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    CPU_CLOCK_FREQUENCY:
+      attributes:
+        id: CPU_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            value: '300000000'
+          type: User
+        type: Values
+      type: String
+    SYSTICK_CLOCK_FREQUENCY:
+      attributes:
+        id: SYSTICK_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            value: '150000000'
+          type: User
+        type: Values
+      type: String
+    I2S0_CLOCK_FREQUENCY:
+      attributes:
+        id: I2S0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            value: '32000'
+          type: User
+        type: Values
+      type: String
+    PCK0_CLOCK_FREQUENCY:
+      attributes:
+        id: PCK0_CLOCK_FREQUENCY
+      children:
+      - children:
+        - attributes:
+            value: '32000'
+          type: User
+        type: Values
+      type: String
+    SLOW_CLK_FREQ:
+      attributes:
+        id: SLOW_CLK_FREQ
+      children:
+      - children:
+        - attributes:
+            id: core
+            value: '32000'
+          type: Dynamic
+        type: Values
+      type: Integer
+    SUPC_CR_XTALSEL:
+      attributes:
+        id: SUPC_CR_XTALSEL
+      children:
+      - children:
+        - attributes:
+            value: 'false'
+          type: User
+        type: Values
+      type: Boolean
+    PMC_CKGR_MOR_MOSCXTEN:
+      attributes:
+        id: PMC_CKGR_MOR_MOSCXTEN
+      children:
+      - children:
+        - attributes:
+            value: 'true'
+          type: User
+        type: Values
+      type: Boolean
+    PMC_CKGR_MOR_MOSCSEL:
+      attributes:
+        id: PMC_CKGR_MOR_MOSCSEL
+      children:
+      - children:
+        - attributes:
+            value: 'true'
+          type: User
+        type: Values
+      type: Boolean
+    PMC_CKGR_MOR_MOSCRCEN:
+      attributes:
+        id: PMC_CKGR_MOR_MOSCRCEN
+      children:
+      - children:
+        - attributes:
+            value: 'false'
+          type: User
+        type: Values
+      type: Boolean
+    PMC_CKGR_PLLAR_MULA:
+      attributes:
+        id: PMC_CKGR_PLLAR_MULA
+      children:
+      - children:
+        - attributes:
+            value: '25'
+          type: User
+        type: Values
+      type: Integer
+    SYSTICK_PERIOD_MS:
+      attributes:
+        id: SYSTICK_PERIOD_MS
+      children:
+      - children:
+        - attributes:
+            id: max
+          children:
+          - type: Value
+            value: '55.92405'
+          type: Float
+        type: Attributes
+      type: Float
+    PIN_102_FUNCTION_TYPE:
+      attributes:
+        id: PIN_102_FUNCTION_TYPE
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_102_PERIPHERAL_FUNCTION:
+      attributes:
+        id: PIN_102_PERIPHERAL_FUNCTION
+      children:
+      - children:
+        - attributes:
+            value: GPIO
+          type: User
+        type: Values
+      type: String
+    PIN_102_FUNCTION_NAME:
+      attributes:
+        id: PIN_102_FUNCTION_NAME
+      children:
+      - children:
+        - attributes:
+            value: KMS
+          type: User
+        type: Values
+      type: String
+    PIN_102_DIR:
+      attributes:
+        id: PIN_102_DIR
+      children:
+      - children:
+        - attributes:
+            value: Out
           type: User
         type: Values
       type: String

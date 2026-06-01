@@ -295,6 +295,12 @@ data:
       children:
       - children:
         - attributes:
+            id: max
+          children:
+          - type: Value
+            value: '0.43690667'
+          type: Float
+        - attributes:
             id: visible
           children:
           - type: Value
@@ -462,4 +468,15 @@ data:
           type: Dynamic
         type: Values
       type: String
+    TC3_CLOCK_FREQ:
+      attributes:
+        id: TC3_CLOCK_FREQ
+      children:
+      - children:
+        - attributes:
+            id: tc0
+            value: '150000000'
+          type: Dynamic
+        type: Values
+      type: Integer
   userData: {}
